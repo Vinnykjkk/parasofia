@@ -14,7 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
@@ -28,13 +28,13 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            min-width: 100%;
-            min-height: 100%;
+            min-width: 100vw;  /* Ocupa 100% da largura da tela */
+            min-height: 100vh; /* Ocupa 100% da altura da tela */
             width: auto;
             height: auto;
             transform: translateX(-50%) translateY(-50%);
             z-index: -1;
-            object-fit: cover;
+            object-fit: cover; /* ESSENCIAL PARA COBRIR A TELA */
         }
         #soundButton {
             position: fixed;
@@ -58,12 +58,12 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
         .card {
-            width: 100%;
+            width: 95%; /* Largura relativa para se adaptar ao celular */
             max-width: 500px;
             background: rgba(0, 0, 0, 0.02);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 30px; /* Padding menor para telas menores */
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
@@ -73,32 +73,25 @@
             z-index: 1;
         }
         @keyframes cardFadeIn {
-            to {
-                opacity: 1;
-            }
+            to { opacity: 1; }
         }
         .heart-icon {
-            font-size: 50px;
+            font-size: 40px; /* Ícone menor em celulares */
             text-shadow: 0 0 15px #ff4081, 0 0 30px #ff4081;
             opacity: 0;
             animation: elementFadeIn 1s ease-out 1s forwards, pulse 1.5s infinite ease-in-out 2s;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.15);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
         .message {
             font-family: 'Kalam', cursive;
-            font-size: 22px;
-            line-height: 1.8;
+            font-size: 18px; /* Fonte menor em celulares */
+            line-height: 1.6;
             color: #e0e0e0;
-            margin: 25px 0;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); 
+            margin: 20px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
         }
         .line {
             display: block;
@@ -107,33 +100,25 @@
             animation: elementFadeIn 1s ease-out forwards;
         }
         .declaration {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
             color: #ffd180;
             text-shadow: 0 0 8px #ffd180, 0 0 16px #ff9800, 1px 1px 3px rgba(0, 0, 0, 0.8);
             animation-delay: 1.8s;
         }
-        .commitment {
-            animation-delay: 2.8s;
-        }
-        .question {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffcccb;
-            animation-delay: 3.8s;
-        }
+        .commitment { animation-delay: 2.8s; }
+        .question { font-size: 20px; font-weight: 700; color: #ffcccb; animation-delay: 3.8s; }
         
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
         }
-
         .button {
             display: inline-block;
-            padding: 15px 30px;
-            font-size: 16px;
+            padding: 12px 25px;
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
@@ -142,30 +127,21 @@
             transition: all 0.3s ease;
             opacity: 0;
             animation: elementFadeIn 1s ease-out 4.8s forwards;
-            white-space: nowrap; /* Impede que o texto do botão quebre a linha */
+            white-space: nowrap;
         }
-        .button:hover {
-            transform: scale(1.05);
-        }
-
+        .button:hover { transform: scale(1.05); }
         .button-yes {
             color: white;
             background: linear-gradient(45deg, #ff80ab, #e91e63);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        
         .button-music {
             color: #333;
             background: linear-gradient(45deg, #fff176, #ffd180);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-
-
         @keyframes elementFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
         #confetti-canvas {
             position: fixed;
@@ -180,7 +156,7 @@
 </head>
 <body>
     <video id="background-video" autoplay loop muted playsinline>
-        <source src="https://www.dropbox.com/scl/fi/oc624d9f8dgsmh1fwmzqh/V-deo-sem-t-tulo-Feito-com-o-Clipchamp.mp4?rlkey=fl0fthe8a2feeeiksm4y2fkin&st=t9qtg6dd&dl=1" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/vqrk4og1j8a4u76h22hx8/ssstik.io_-literalmentenois1_1755150866470.mp4?rlkey=fl0fthe8a2feeeiksm4y2fkin&st=t9qtg6dd&dl=1" type="video/mp4">
         Seu navegador não suporta vídeos.
     </video>
     <button id="soundButton">🔇</button>
@@ -234,7 +210,7 @@
         function startConfetti() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            let totalParticles = window.innerWidth < 600 ? 70 : 130; 
+            let totalParticles = window.innerWidth < 600 ? 50 : 100;
             for (let i = 0; i < totalParticles; i++) {
                 confettiParticles.push(createParticle());
             }
@@ -245,10 +221,10 @@
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height - canvas.height;
             const emoji = Math.random() > 0.5 ? '💖' : '✨';
-            const size = Math.random() * 15 + 15;
+            const size = Math.random() * 10 + 10;
             const speedY = Math.random() * 2 + 1.5;
             const speedX = (Math.random() - 0.5) * 2;
-            const opacity = Math.random() * 0.5 + 0.5;
+            const opacity = Math.random() * 0.6 + 0.4;
             return { x, y, emoji, size, speedY, speedX, opacity };
         }
         
